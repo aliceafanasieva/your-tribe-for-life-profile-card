@@ -52,25 +52,62 @@
     <div class="track" style="--i:{idx};">
       <section class="slide">
         <div class="bg fade"></div>
-        <h1 class="title dotted">ALISA AFANASIEVA</h1>
+        <h1
+          class="title preSlide"
+          class:run={idx === 0}
+          style="--reveal-delay:300ms"
+        >
+          ALISA AFANASIEVA
+        </h1>
       </section>
 
       <section class="slide">
         <div class="bg fade"></div>
+
         <div class="skills">
-          <span class="swash m"><span class="fancy">M</span>otion design</span>
-          <div class="cross-wrap">
-            <Cross center size={80} thickness={22} color="#fff" />
-          </div>
-          <span class="swash g"><span class="fancy">G</span>raphic design</span>
-          <span class="swash f"><span class="fancy">F</span>rontend dev</span>
-          <span class="swash w"><span class="fancy">W</span>ebdesign</span>
+          <span
+            class="swash m preSlide"
+            class:run={idx === 1}
+            style="--reveal-delay:200ms"
+          >
+            <span class="fancy">M</span>otion design
+          </span>
+
+          <Cross center size={100} thickness={22} color="#fff" />
+
+          <span
+            class="swash g preSlide"
+            class:run={idx === 1}
+            style="--reveal-delay:400ms"
+          >
+            <span class="fancy">G</span>raphic design
+          </span>
+
+          <span
+            class="swash f preSlide"
+            class:run={idx === 1}
+            style="--reveal-delay:700ms"
+          >
+            <span class="fancy">F</span>rontend dev
+          </span>
+
+          <span
+            class="swash w preSlide"
+            class:run={idx === 1}
+            style="--reveal-delay:900ms"
+          >
+            <span class="fancy">W</span>ebdesign
+          </span>
         </div>
       </section>
 
       <section class="slide">
         <div class="bg fade"></div>
-        <ul class="contacts">
+        <ul
+          class="contacts preSlide"
+          class:run={idx === 2}
+          style="--reveal-delay:300ms"
+        >
           <li><b>tg:</b> @liskinroom</li>
           <li><b>ig:</b> @murkiny.glazki</li>
           <li><b>git:</b> aliceafanasieva</li>
@@ -105,6 +142,40 @@
     background: rgb(30, 30, 30);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 300;
+  }
+
+  :global(.preSlide) {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  :global(.preSlide.run) {
+    animation: fadeUp 700ms ease forwards;
+    animation-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    :global(.preSlide.run.scroll) {
+      animation-timeline: view();
+      animation-range: entry 20% cover 20%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.preSlide),
+    :global(.preSlide.run) {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 
   .page {
@@ -222,10 +293,10 @@
   .contacts {
     z-index: 1;
     list-style: none;
-    padding: 0.8rem 1.1rem;
     margin: 0;
+    padding: 0.8rem 1.1rem;
     display: grid;
-    gap: 0.4rem;
+    gap: 0.5rem;
     font-size: clamp(14px, 1.8vw, 20px);
   }
 

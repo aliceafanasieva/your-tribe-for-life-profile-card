@@ -22,7 +22,6 @@
 <style>
   .cross {
     display: inline-block;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
     pointer-events: none;
   }
   .cross svg {
