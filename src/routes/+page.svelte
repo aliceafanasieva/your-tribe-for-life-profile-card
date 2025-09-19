@@ -2,8 +2,8 @@
   import { onMount, onDestroy } from "svelte";
   import Cross from "$lib/icons/Cross.svelte";
 
-  let idx = 0;
-  const total = 3;
+  let idx = 0; // current slide-index (0 = 1st)
+  const total = 3; // total amount slides
 
   const next = () => (idx = (idx + 1) % total);
   const prev = () => (idx = (idx - 1 + total) % total);
@@ -49,7 +49,9 @@
     on:touchmove={onTouchMove}
     on:touchend={onTouchEnd}
   >
+    <!-- .track schuift met CSS d.m.v. custom property --i (idx) -->
     <div class="track" style="--i:{idx};">
+      <!-- SLIDE 1 -->
       <section class="slide">
         <div class="bg fade"></div>
         <h1
@@ -61,6 +63,7 @@
         </h1>
       </section>
 
+      <!-- SLIDE 2 -->
       <section class="slide">
         <div class="bg fade"></div>
 
@@ -101,6 +104,7 @@
         </div>
       </section>
 
+      <!-- SLIDE 3 -->
       <section class="slide">
         <div class="bg fade"></div>
         <ul
@@ -252,15 +256,18 @@
     top: 8%;
     left: 10%;
   }
+
   .swash.g {
     top: 20%;
     right: 7%;
     text-align: right;
   }
+
   .swash.f {
     bottom: 20%;
     left: 13%;
   }
+
   .swash.w {
     bottom: 8%;
     right: 10%;
